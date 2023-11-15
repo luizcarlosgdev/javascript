@@ -1,4 +1,4 @@
-let numeroTel = "(37) 9928-4682"
+let numeroTel = "(00) 4002-8922"
 
 function mascararTel(numero){
   const hiffenIndice = numero.indexOf("-")

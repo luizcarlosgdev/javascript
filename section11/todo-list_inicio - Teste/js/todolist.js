@@ -11,6 +11,9 @@
             createdAt: Date.now(),
             updatedAt: null,
             completed: false,
+            toggleDone: function(){
+                this.completed = !this.completed
+            }
         }
     ]
 
@@ -19,6 +22,9 @@
         this.createdAt = createdAt || Date.now()
         this.updatedAt = updatedAt || null
         this.completed = completed || false
+        this.toggleDone = function(){
+            this.completed = !this.completed
+        }
     }
 
 
@@ -120,8 +126,10 @@
                 renderTask()
             },
             buttonCheck: function(){
-                console.log("buttonCheck")
+                /* console.log("buttonCheck")
                 arrTask[indexLi].completed = !arrTask[indexLi].completed
+                 */
+                arrTask[indexLi].toggleDone()
                 renderTask()
             },
             itrash: function(){

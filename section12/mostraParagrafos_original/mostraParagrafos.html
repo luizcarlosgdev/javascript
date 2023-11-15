@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<style>
+		
+		body {
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		button {
+			cursor: pointer;
+		}
+
+		#container {
+			width: 90%;
+			max-width: 600px;
+			margin: auto;
+		}
+
+		.card {
+			margin: 16px;
+			border: 1px solid #ccc;
+			padding: 16px 32px 32px 16px;
+			position: relative;
+		}
+
+		.card p {
+			margin: 0;
+		}
+
+		.card.text-hidden:after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 64px;
+			background-image: linear-gradient(transparent, white 80%);
+			pointer-events: none;
+		}
+
+		.card button {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			background-color: transparent;
+			z-index: 1;
+			border: none;
+			font-size: 1.5em;
+		}
+
+		.card button:hover {
+			color: red;
+		}
+
+
+		body,
+		html {
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div class="card">
+			<p>
+				1Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae accusamus corporis illum est dignissimos aliquam atque modi possimus animi, id hic, in fuga libero a laborum, quod ipsum facilis optio?. Lorem ipsum dolor sit amet consectetur adipisicing elit. At, cum animi quis libero nam quisquam reiciendis, unde eos perferendis praesentium error et officia minima? Rem ullam velit hic eos doloribus!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse dolore repellat dicta modi, ducimus aut soluta, debitis rem dignissimos delectus eveniet amet. Ullam dolorem praesentium voluptates fuga accusamus quas quam.1
+			</p>
+
+		</div>
+
+		<div class="card">
+			<p>
+				2Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae accusamus corporis illum est dignissimos aliquam atque modi possimus animi, id hic, in fuga libero a laborum, quod ipsum facilis optio?. Lorem ipsum dolor sit amet consectetur adipisicing elit. At, cum animi quis libero nam quisquam reiciendis, unde eos perferendis praesentium error et officia minima? Rem ullam velit hic eos doloribus!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse dolore repellat dicta modi, ducimus aut soluta, debitis rem dignissimos delectus eveniet amet. Ullam dolorem praesentium voluptates fuga accusamus quas quam.2
+			</p>
+		</div>
+		<div class="card">
+			<p>
+				3Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae accusamus corporis illum est dignissimos aliquam atque modi possimus animi, id hic, in fuga libero a laborum, quod ipsum facilis optio?. Lorem ipsum dolor sit amet consectetur adipisicing elit. At, cum animi quis libero nam quisquam reiciendis, unde eos perferendis praesentium error et officia minima? Rem ullam velit hic eos doloribus!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse dolore repellat dicta modi, ducimus aut soluta, debitis rem dignissimos delectus eveniet amet. Ullam dolorem praesentium voluptates fuga accusamus quas quam.3
+			</p>
+				
+		</div>
+	</div>
+	<script src="https://kit.fontawesome.com/1c4e889c39.js" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		;(function(){
+			const arrP = Array.from(document.querySelectorAll(".card p"))
+			const originArrP = arrP.map( p => p.innerText)
+			const maxlength = 100
+
+			arrP.forEach((p, i) => {
+				if(p.innerText.length > maxlength){
+					p.innerText = p.innerText.slice(0, maxlength) + "..."
+					
+					const btn = document.createElement("button")
+					btn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>'
+					p.parentElement.classList.add("text-hidden")
+					btn.addEventListener("click", function(e){
+						toggleText(e, p, i)
+					})
+					p.parentElement.appendChild(btn)
+				}
+			})			
+			
+			function toggleText(e, p, i){
+				//alternar o icone do botao para "up"
+				//remover a class text-hidden
+				const card = e.currentTarget.parentElement
+				card.classList.toggle("text-hidden")
+				e.currentTarget.querySelector("i").classList.toggle("fa-chevron-down")
+				e.currentTarget.querySelector("i").classList.toggle("fa-chevron-up")
+
+				if(card.classList.contains("text-hidden")){
+					//true
+					p.innerText = p.innerText.slice(0, maxlength)
+				}else{
+					//false
+					p.innerText = originArrP[i]
+				}
+			}
+
+		})()
+	</script>
+</body>
+
+</html>

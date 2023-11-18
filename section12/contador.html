@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    <h1>Meu Contador</h1>
+    <span id="contador"></span>
+    <div>
+      <button id="almentar">
+        almentar
+      </button>
+      <button id="diminuir">
+        diminuir
+      </button>
+    </div>
+  </main>
+  <script>
+    ;(function(){
+      let contador = 0
+
+      const btnAlmentar = document.querySelector("#almentar")
+      const btnDiminuir = document.querySelector("#diminuir")
+      const displayContador = document.querySelector("#contador")
+
+      btnAlmentar.addEventListener("click", function(){
+        contador += 1
+        displayContador.textContent = contador
+      })
+
+      btnDiminuir.addEventListener("click", function(){
+        contador -= 1
+        displayContador.textContent = contador
+      })
+      
+
+      console.log(displayContador)
+    })()
+  </script>
+</body>
+</html>

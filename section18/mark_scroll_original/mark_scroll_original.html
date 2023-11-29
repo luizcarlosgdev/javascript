@@ -191,20 +191,42 @@
     <script>
 
         ;(function(){
-            const lis = document.querySelector(".nav ul")
+            window.addEventListener("scroll", destacaMenu)
             
-            const element1 = document.querySelector("#s1")
-            const element2 = document.querySelector("#s2")
-            const element3 = document.querySelector("#s3")
-            
-            console.log(element3.offsetTop)
-            if(element1.offsetTop < 1557){
-                lis.children[0].style.backgroundColor = "red"
-            }else if(element2.offsetTop >= 2879){
-                lis.children[1].style.backgroundColor = "red"   
-            }else{
-                lis.children[2].style.backgroundColor = "red"   
+            let menu = document.querySelector(".nav")
+            let links = menu.querySelectorAll("li a")
+
+            function destacaMenu(){
+                let position = [...links].map(function(link, i){
+                    let href = link.getAttribute("href")
+                    let referencia = document.querySelector(href)
+                    //obtemos a referencia atraves desse linha
+                    return referencia.getBoundingClientRect().top
+                })
+
+                let linkAtivo = pegaUltimoLinkAtivo(position)
+
+                let menuActive = menu.querySelector(".actived")
+                if(menuActive){
+                    menuActive.classList.remove("actived")
+                }
+
+                if(linkAtivo){
+                    return linkAtivo.classList.add("actived")
+                }
+
+                return links[0].classList.add("actived")
+                
             }
+            
+            function pegaUltimoLinkAtivo(_position){
+                let lastPosition = _position.filter(n => n < innerHeight / 2)
+                
+                return links[lastPosition.length - 1]
+            }
+            
+            
+            destacaMenu()
         })()
 
     </script>
